@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script defer src="http://unpkg.com/alpinejs"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../public/output.css" rel="stylesheet" />
+  </head>
+
+  <!-- Main flex is column so items stack vertically, then each item on it's own -->
+
+  <body
+    x-data="{sidebarOpen: false, 
+      search: '',
+      home: true,
+      settings: false,
+      about: false,
+      users: false,
+      quickSearch: false,
+      blur: false,
+    }"
+    class="flex relative flex-col h-screen w-screen justify-start accent-purple-700 bg-gradient-to-br from-violet-200 to-violet-300"
+  >
+    <!--static menu-->
+    <div
+      class="flex flex-row justify-between items-center w-full h-min max-h-12 px-2 bg-slate-900"
+    >
+      <button
+        @click="sidebarOpen = ! sidebarOpen"
+        class="flex font-semibold rounded-md px-2 py-3 hover:bg-purple-700 text-white"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="M3 18v-2h18v2zm0-5v-2h18v2zm0-5V6h18v2z"
+          />
+        </svg>
+      </button>
+
+      <!-- search bar-->
+      <div class="font-mono w-1/4">
+        <input
+          x-model="search"
+          x-on:keydown="quickSearch = true, blur = true"
+          x-on:change="quickSearch = false, blur = false"
+          @click="search = ''"
+          placeholder="Search..."
+          @click.outside="quickSearch = false, blur = false"
+          class="text-center outline-3 focus:outline outline-violet-700 rounded-full w-full"
+        />
+      </div>
+
+      <!--users menu button-->
+      <div>
+        <button
+          class="flex font-semibold rounded-md px-2 py-3 hover:bg-purple-700 text-white"
+          @click="users = true, home = false, settings = false, about = false"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!--end static menu-->
+
+    <!--main view?-->
+    <div
+      class="relative flex h-dvh p-3 px-2 space-x-3 left-0"
+      :class="blur ? 'blur-sm' : ''"
+      x-cloak
+    >
+      <!--Sidebar element-->
+      <div
+        x-show="sidebarOpen"
+        x-transition.duration.200ms
+        x-cloak
+        class="flex-col font-mono font-bold px-3 h-full w-40 min-w-fit rounded-2xl text-white bg-slate-900"
+      >
+        <button
+          class="flex justify-center items-center w-full h-12 border-b-gray-200 border-b"
+          @click="home = true, settings = false, about = false, users=false"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7z" />
+          </svg>
+          Home
+        </button>
+
+        <button
+          class="flex items-center place-content-center shadow-md hover:shadow-purple-700/80 w-full h-12 rounded hover:bg-purple-700"
+          @click="home = false, settings = true, about = false, users=false"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="m12 1l9.5 5.5v11L12 23l-9.5-5.5v-11zm0 2.311L4.5 7.653v8.694l7.5 4.342l7.5-4.342V7.653zM12 16a4 4 0 1 1 0-8a4 4 0 0 1 0 8m0-2a2 2 0 1 0 0-4a2 2 0 0 0 0 4"
+            /></svg
+          >Settings
+        </button>
+        <a
+          class="flex items-center place-content-center shadow-md hover:shadow-purple-700/80 r w-full h-12 rounded hover:bg-purple-700"
+          href="#"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"
+            />
+          </svg>
+          GitHub
+        </a>
+        <button
+          class="flex items-center place-content-center shadow-md hover:shadow-purple-700/80 w-full h-12 rounded hover:bg-purple-700"
+          @click="sidebarOpen = ! sidebarOpen"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M5 21q-.825 0-1.412-.587T3 19v-3q0-.425.288-.712T4 15q.425 0 .713.288T5 16v3h14V5H5v3q0 .425-.288.713T4 9q-.425 0-.712-.288T3 8V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm6.65-8H4q-.425 0-.712-.288T3 12q0-.425.288-.712T4 11h7.65L9.8 9.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L14.8 11.3q.15.15.213.325t.062.375q0 .2-.062.375t-.213.325l-3.575 3.575q-.3.3-.712.288T9.8 16.25q-.275-.3-.288-.7t.288-.7z"
+            />
+          </svg>
+          Logout
+        </button>
+        <button
+          class="flex items-center place-content-center shadow-md hover:shadow-purple-700/80 w-full h-12 rounded hover:bg-purple-700"
+          @click="home = false, settings = false, users=false, about = true"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"
+            />
+          </svg>
+          About
+        </button>
+      </div>
+      <!--End sidebar-->
+
+      <!-- Begin main view-->
+      <!--Testing hiding-->
+
+      <!--Home-->
+      <div
+        x-show="home"
+        class="grow flex-col justify-center font-sans overflow-auto"
+      >
+        <div class="flex w-3/4 rounded-md shadow-lg space-x-2">
+          <table
+            class="w-full table-auto text-center border-violet-400 bg-violet-300"
+          >
+            <thead class="border bg-violet-400 border-inherit">
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Tags</th>
+                <th>ID</th>
+              </tr>
+            </thead>
+            <tbody class="border border-inherit">
+              <tr>
+                <td>Apple</td>
+                <td>A red apple</td>
+                <td>first drawer</td>
+                <td>Food, Red, Fruit, consumable</td>
+                <td>apple-1</td>
+              </tr>
+              <tr>
+                <td>Pen</td>
+                <td>A blue pen</td>
+                <td>second drawer</td>
+                <td>Tool, blue, utility, writing, consumable</td>
+                <td>pen-1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--End home-->
+
+      <!--Settings-->
+      <div x-show="settings" class="grow items-center font-mono overflow-auto">
+        TESTING SETTINGS
+      </div>
+      <!--End settings-->
+
+      <!--Users-->
+      <div x-show="users" class="grow items-center font-mono overflow-auto">
+        USERS
+      </div>
+      <!--End users-->
+
+      <!--About-->
+      <div x-show="about" class="grow justify-evenly font-sans overflow-auto">
+        <h2>About section:</h2>
+        <p class="flex rounded shadow-md bg-violet-300 p-1">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex officiis
+          accusantium corrupti quos velit aut deserunt esse et illum, ab saepe
+          reprehenderit, sapiente provident dolorem itaque enim tempore magnam
+          recusandae?
+          <img
+            src="https://gratisography.com/wp-content/uploads/2018/05/gratisography-326H-free-stock-photo-1170x780.jpg"
+            class="rounded-r-full shadow-lg float-right max-h-28 max-w-28 object-scale-down"
+          />
+        </p>
+      </div>
+      <!--End about-->
+
+      <!-- End main view-->
+    </div>
+
+    <!--QuickSearch overlay-->
+    <div
+      x-show="quickSearch"
+      x-cloak
+      x-transition.duration.200ms
+      class="absolute p-3 top-1/4 place-self-center w-1/3 rounded-lg overflow-auto text-white bg-violet-400 opacity-75"
+    >
+      <div x-text="search"></div>
+    </div>
+
+    <!--End quickSearch overlay-->
+    <!--footer?-->
+    <div x-cloak class="font-mono w-full flex justify-end bg-inherit">
+      <div class="italic px-5">Copyright something something 2024</div>
+      <div class="flex px-5">
+        <a href="#"> mail@mail.com </a>
+      </div>
+    </div>
+    <!--end footer?-->
+  </body>
+</html>
