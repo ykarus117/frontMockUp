@@ -61,7 +61,6 @@
             x-on:change="quickSearch = false, blur = false"
             @click="search = ''"
             placeholder="Search..."
-            @click.outside="quickSearch = false, blur = false"
             class="text-center outline-3 focus:outline outline-violet-700 rounded-full w-full"
           />
       </div>
@@ -278,12 +277,19 @@
     <div
       x-show="quickSearch"
       x-cloak
-      x-transition.duration.200ms
-      class="absolute p-3 top-1/4 place-self-center w-1/3 rounded-lg overflow-auto text-white bg-violet-400 opacity-75"
+      x-transition.duration.150ms
+      x-on:click.outside="quickSearch = false, blur = false"
+      class="absolute p-3 top-1/4 place-self-center will-change-contents w-1/3 rounded-lg font-semibold overflow-auto bg-gray-300 text-black opacity-70"
     >
-      <div x-text="search"></div>
+      <div x-text="search" class="text-center border-b-2 border-dashed border-yellow-500"></div>
+      <ul class="p-2">
+        <template x-for="users in userSearch(search)">
+          <li>
+            <button x-show="users" @click="selectedUser=fetchSingleUser(users.id), userView = true, blur = false, quickSearch=false" x-text="users.name" class="w-full overflow-scroll p-2 hover:outline-1 hover:outline rounded hover:scale-105 hover:shadow-xl bg-gray-200"></button>
+          </li>
+        </template>
+      </ul>
     </div>
     <!--End quickSearch overlay-->
   </body>
-<footer> something</footer>
 </html>

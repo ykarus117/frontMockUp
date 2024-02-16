@@ -79,3 +79,23 @@ async function tableUpdate(tableHTML) {
         });
     return tableHTML;
 }
+
+async function userSearch(search) {
+    let filteredUsers = [''];
+    if (search.length > 0) {
+        await fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(data => {
+                let users;
+                users = data;
+                users.forEach(user => {
+                    if (user.name.toLowerCase().includes(search.toLowerCase())) {
+                        filteredUsers.push(user);
+                    }
+                });
+            });
+        return filteredUsers;
+    }else{
+        return null;
+    }
+}
