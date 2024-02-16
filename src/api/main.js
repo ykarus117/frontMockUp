@@ -17,6 +17,7 @@ async function fetchSingleUser(id){
         user.name +
         '</h1>';
     userInfoFields += userInfoFill(user);
+    userInfoFields += `<button class="sticky bottom-2 bg-yellow-500 w-1/2 place-self-center rounded-full">Save</button>`
     return userInfoFields;
 }
 
@@ -30,19 +31,17 @@ function userInfoFill(currentObject){
                 // button to toggle the visibility of the nested object
                 `<button class="bg-violet-400 outline-yellow-600 hover:outline outline-1 hover:shadow rounded-md border-violet-500 w-full text-center font-bold" 
                   @click="$refs.${uppedKey}.classList.toggle('hidden')"
-                  >${uppedKey}</button>  
+                  >${uppedKey}</button>
                   <div x-ref="${uppedKey}" class="bg-violet-300 pb-1 mb-2 mx-1.5 shadow-lg rounded">`;
             userInfoHTML += userInfoFill(currentObject[key]);
             userInfoHTML += '</div>';
         }else {
             userInfoHTML +=
-                '<div class="bg-violet-300">' +
+                '<div class="flex flex-col bg-violet-300">' +
                 '<p class="w-full text-center font-bold">' +
                 key +
                 ': </p>' +
-                '<p class="text-center text-wrap">' +
-                currentObject[key] +
-                '</p></div>';
+                `<input type="text" value="${currentObject[key]}" class="place-self-center bg-gray-200 w-fit select-auto rounded text-center text-wrap"> </div>`;
         }
     }
     return userInfoHTML;
