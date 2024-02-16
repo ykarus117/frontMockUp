@@ -92,7 +92,7 @@
 
     <!--main view?-->
     <div
-      class="relative flex grow h-full p-2 px-1 gap-1"
+      class="relative flex grow h-svh w-svw p-2 px-1 gap-1"
       :class="blur ? 'blur-sm' : ''"
       x-cloak
     >
@@ -192,9 +192,10 @@
       <!--Home-->
       <div x-show="home"
            x-init = "tableData=tableUpdate(tableData)"
-           class="flex flex-row h-svh w-full columns-2 bg-inherit mx-0.5 gap-2 font-sans">
+           class="grid grid-rows-4 h-full w-full bg-inherit mx-0.5 gap-2 font-sans">
         <!--Table view-->
-        <div class="flex h-3/4 w-full p-1 overscroll-contain overflow-auto rounded-lg bg-yellow-500 shadow shadow-gray-800">
+        <div class="flex p-1 row-start-1 row-span-3 w-auto overscroll-contain will-change-auto overflow-auto rounded-lg bg-yellow-500 shadow shadow-gray-800"
+          >
           <table class="table-auto w-full rounded-md">
             <tbody x-html="tableData">
             </tbody>
@@ -203,13 +204,14 @@
         <!--End table view-->
 
         <!--User view-->
-        <div class="flex flex-col h-3/4 w-1/3 overscroll-contain overflow-auto border-b-2 border-yellow-500 text-wrap bg-violet-300 shadow shadow-gray-800 rounded-md"
+        <div class="flex row-start-1 row-span-3 overscroll-contain overflow-auto border-b-2 border-yellow-500 bg-violet-300 shadow shadow-gray-800 rounded-md"
              x-show="userView"
              x-transition
              x-transition.duration.150ms>
           <!--User data-->
-          <p class="font-sans w-full border-collapse" x-html="selectedUser"></p>
+          <p class="font-sans md:w-72 md:flex md:flex-col w-auto text-wrap" x-html="selectedUser"></p>
           <!--End user data-->
+
         </div>
         <!--End user view-->
       </div>
@@ -283,4 +285,5 @@
     </div>
     <!--End quickSearch overlay-->
   </body>
+<footer> something</footer>
 </html>

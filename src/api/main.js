@@ -40,7 +40,7 @@ function userInfoFill(currentObject){
                 '<p class="w-full text-center font-bold">' +
                 key +
                 ': </p>' +
-                '<p class="text-center">' +
+                '<p class="text-center text-wrap">' +
                 currentObject[key] +
                 '</p></div>';
         }
