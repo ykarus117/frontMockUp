@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="accent-purple-700 bg-gradient-to-br from-gray-200 to-gray-400">
+<html class="bg-zinc-600">
   <head>
     <meta charset="UTF-8" />
     <script defer src="./api/main.js/"></script>
@@ -32,7 +32,7 @@
   >
     <!--static menu-->
     <div
-      class="flex flex-row top-0 justify-between items-center w-full h-min max-h-12 px-2 bg-purple-900 shadow-lg"
+      class="flex flex-row top-0 justify-between items-center w-full h-min max-h-12 px-2 bg-amber-900 shadow-lg"
     >
       <!-- sidebar button-->
       <button
@@ -101,7 +101,7 @@
         x-show="sidebarOpen"
         x-transition.duration.200ms
         x-cloak
-        class="grid grid-cols-1 max-h-96 grid-flow-auto auto-rows-auto place-content-evenly font-mono py-4 px-3 gap-3 font-bold min-w-fit w-15 rounded-full text-white bg-yellow-500 mix-blend-multiply shadow-md shadow-gray-600"
+        class="grid grid-cols-1 max-h-96 grid-flow-auto auto-rows-auto place-content-evenly font-mono py-4 px-3 gap-3 font-bold min-w-fit w-15 rounded-full text-white bg-yellow-500 shadow-md shadow-gray-600"
       >
         <button
           class="grid place-content-center w-12 h-12 hover:shadow-purple-700/80 rounded-full hover:bg-yellow-700"
@@ -194,7 +194,7 @@
            x-init = "tableData=tableUpdate(tableData)"
            class="flex flex-row h-svh w-full columns-2 bg-inherit mx-0.5 gap-2 font-sans">
         <!--Table view-->
-        <div class="flex h-3/4 w-full p-1 overscroll-contain overflow-auto rounded-lg bg-yellow-500 shadow shadow-gray-800 mix-blend-multiply">
+        <div class="flex h-3/4 w-full p-1 overscroll-contain overflow-auto rounded-lg bg-yellow-500 shadow shadow-gray-800">
           <table class="table-auto w-full rounded-md">
             <tbody x-html="tableData">
             </tbody>
@@ -203,7 +203,7 @@
         <!--End table view-->
 
         <!--User view-->
-        <div class="flex flex-col h-3/4 w-1/3 overscroll-contain overflow-auto px-1 pb-1 text-wrap shadow shadow-gray-800 rounded-md bg-yellow-500 mix-blend-multiply"
+        <div class="flex flex-col h-3/4 w-1/3 overscroll-contain overflow-auto border-b-2 border-yellow-500 text-wrap bg-violet-300 shadow shadow-gray-800 rounded-md"
              x-show="userView"
              x-transition
              x-transition.duration.150ms>

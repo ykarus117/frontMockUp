@@ -6,7 +6,7 @@ async function fetchSingleUser(id){
         .then(data => {
             user = data;
         });
-    userInfoFields = '<h1 class="flex flex-row sticky place-content-between top-0 p-0.5 border-2 border-dashed rounded-md bg-violet-300 w-full text-center  border-violet-500 font-bold">' +
+    userInfoFields = '<h1 class="flex flex-row sticky place-content-between top-0 p-0.5 pr-2 shadow-lg rounded bg-yellow-500 w-full text-center border-violet-500 font-bold">' +
         '         <!--Close button-->\n' +
         '            <button class="rounded-full place-self-center hover:outline hover:outline-2 hover:outline-slate-400/90 bg-purple-700/70 h-5 w-5"' +
         '                    @click="userView=false">\n' +
@@ -27,15 +27,16 @@ function userInfoFill(currentObject){
         if (typeof currentObject[key] === 'object' && currentObject[key] !== null ) {
             let uppedKey = key[0].toUpperCase() + key.slice(1);
             userInfoHTML +=
-                `<button class="bg-violet-300 outline-yellow-600 outline-1 outline rounded-md border-violet-500 w-full text-center font-bold" 
+                // button to toggle the visibility of the nested object
+                `<button class="bg-violet-400 outline-yellow-600 hover:outline outline-1 hover:shadow rounded-md border-violet-500 w-full text-center font-bold" 
                   @click="$refs.${uppedKey}.classList.toggle('hidden')"
-                  >${uppedKey}</button>
-                  <div x-ref="${uppedKey}" class="bg-violet-200">`;
+                  >${uppedKey}</button>  
+                  <div x-ref="${uppedKey}" class="bg-violet-300 pb-1 mb-2 mx-1.5 shadow-lg rounded">`;
             userInfoHTML += userInfoFill(currentObject[key]);
             userInfoHTML += '</div>';
         }else {
             userInfoHTML +=
-                '<div class="bg-violet-200">' +
+                '<div class="bg-violet-300">' +
                 '<p class="w-full text-center font-bold">' +
                 key +
                 ': </p>' +
@@ -47,7 +48,7 @@ function userInfoFill(currentObject){
     return userInfoHTML;
 }
 
-async function tableUpdate(tableHTML){
+async function tableUpdate(tableHTML) {
     await fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
         .then(data => {
@@ -64,7 +65,7 @@ async function tableUpdate(tableHTML){
             data.forEach(user => {
                 tableHTML += `<tr
                   x-on:click="selectedUser = fetchSingleUser(${user.id}), userView = true"
-                  class="outline-offset-0 odd:bg-violet-300 even:bg-violet-200 hover:outline-2 hover:outline hover:rounded outline-yellow-600"
+                  class="outline-offset-0 odd:bg-violet-300 even:bg-violet-400 hover:outline-2 hover:outline hover:rounded outline-yellow-600"
                   >
                   <td>${user.id}</td>
                   <td>${user.name}</td>
