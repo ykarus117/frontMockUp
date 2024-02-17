@@ -27,6 +27,7 @@
       tableData: '',
       selectedUser: '',
       userView: false,
+      tableView: true,
     }"
     class="flex flex-col min-h-svh overflow-hidden w-svh justify-start"
   >
@@ -193,7 +194,7 @@
            x-init = "tableData=tableUpdate(tableData)"
            class="grid grid-rows-4 h-full w-full bg-inherit mx-0.5 gap-2 font-sans">
         <!--Table view-->
-        <div class="flex p-1 row-start-1 row-span-3 w-auto overscroll-contain will-change-auto overflow-auto rounded-lg bg-yellow-500 shadow shadow-gray-800"
+        <div x-show="tableView" x-collapse.duration.150ms class="flex p-1 row-start-1 row-span-3 w-auto overscroll-contain will-change-auto overflow-auto rounded-lg bg-yellow-500 shadow shadow-gray-800"
           >
           <table class="table-auto w-full rounded-md">
             <tbody x-html="tableData">
@@ -208,7 +209,7 @@
              x-transition
              x-transition.duration.150ms>
           <!--User data-->
-          <p class="font-sans md:w-72 md:flex md:flex-col w-auto text-wrap" x-html="selectedUser"></p>
+          <p class="flex flex-col w-full justify-stretch font-sans md:w-72 text-wrap" x-html="selectedUser"></p>
           <!--End user data-->
 
         </div>
@@ -285,7 +286,7 @@
       <ul class="flex flex-col">
         <template x-for="users in userSearch(search)">
           <li class="p-1">
-            <button x-show="users" @click="selectedUser=fetchSingleUser(users.id), userView = true, blur = false, quickSearch=false" x-text="users.name" class="w-full overflow-auto p-2 hover:outline-1 hover:outline rounded hover:scale-105 hover:shadow-xl bg-gray-200"></button>
+            <button x-show="users" @click="selectedUser=fetchSingleUser(users.id), userView = true, blur = false, quickSearch=false, tableView = window.innerWidth >= 500" x-text="users.name" class="w-full overflow-auto p-2 hover:outline-1 hover:outline rounded hover:scale-105 hover:shadow-xl bg-gray-200"></button>
           </li>
         </template>
       </ul>
