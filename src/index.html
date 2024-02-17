@@ -194,7 +194,7 @@
            x-init = "tableData=tableUpdate(tableData)"
            class="grid grid-rows-4 h-full w-full bg-inherit mx-0.5 gap-2 font-sans">
         <!--Table view-->
-        <div x-show="tableView" x-collapse.duration.150ms class="flex p-1 row-start-1 row-span-3 w-auto overscroll-contain will-change-auto overflow-auto rounded-lg bg-yellow-500 shadow shadow-gray-800"
+        <div x-show="tableView" x-collapse.duration.150ms class="flex p-1 row-start-1 row-span-3 w-auto overscroll-auto overflow-auto rounded-lg bg-yellow-500 shadow shadow-gray-800"
           >
           <table class="table-auto w-full rounded-md">
             <tbody x-html="tableData">
