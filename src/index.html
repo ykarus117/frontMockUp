@@ -204,13 +204,14 @@
         <!--End table view-->
 
         <!--User view-->
-        <div class="flex row-span-3 overscroll-contain overflow-auto border-b-2 border-yellow-300 bg-violet-300 shadow shadow-black rounded-md"
+        <div class="flex row-start-1 row-span-3 overscroll-contain overflow-auto border-b-2 border-yellow-300 bg-violet-300 shadow shadow-gray-800 rounded-md"
              x-show="userView"
              x-transition
              x-transition.duration.150ms>
           <!--User data-->
-          <p class="flex flex-col w-full justify-stretch font-sans md:w-72 text-wrap" x-html="selectedUser"></p>
+          <p class="flex flex-col w-full justify-stretch font-sans text-wrap" x-html="selectedUser"></p>
           <!--End user data-->
+
         </div>
         <!--End user view-->
       </div>
