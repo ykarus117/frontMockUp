@@ -33,7 +33,7 @@
   >
     <!--static menu-->
     <div
-      class="flex flex-row top-0 justify-between items-center w-full h-min max-h-12 px-2 bg-yellow-500 shadow-lg"
+      class="flex flex-row top-0 justify-between items-center w-full h-min max-h-12 px-2 bg-[#1a0033] shadow-lg"
     >
       <!-- sidebar button-->
       <button
@@ -192,11 +192,11 @@
       <!--Home-->
       <div x-show="home"
            x-init = "tableData=tableUpdate(tableData)"
-           class="grid grid-rows-4 h-full w-full bg-inherit mx-0.5 gap-2 font-sans">
+           class="grid grid-rows-4 grid-flow-col h-5/6 w-full bg-inherit mx-0.5 gap-2 font-sans">
         <!--Table view-->
-        <div x-show="tableView" class="flex p-1 row-start-1 row-span-3 w-auto overscroll-contain overflow-auto rounded-lg bg-yellow-300 shadow shadow-gray-800"
+        <div x-show="tableView" class="flex p-1 pb-1.5 row-start-1 row-span-3 w-auto overscroll-contain overflow-auto rounded-md bg-yellow-500 shadow shadow-black"
           >
-          <table class="table-auto w-full rounded-md">
+          <table class="table-auto w-full border-collapse rounded-md">
             <tbody x-html="tableData">
             </tbody>
           </table>
@@ -204,14 +204,13 @@
         <!--End table view-->
 
         <!--User view-->
-        <div class="flex row-start-1 row-span-3 overscroll-contain overflow-auto border-b-2 border-yellow-300 bg-violet-300 shadow shadow-gray-800 rounded-md"
+        <div class="flex row-span-3 overscroll-contain overflow-auto border-b-2 border-yellow-300 bg-violet-300 shadow shadow-black rounded-md"
              x-show="userView"
              x-transition
              x-transition.duration.150ms>
           <!--User data-->
           <p class="flex flex-col w-full justify-stretch font-sans md:w-72 text-wrap" x-html="selectedUser"></p>
           <!--End user data-->
-
         </div>
         <!--End user view-->
       </div>
