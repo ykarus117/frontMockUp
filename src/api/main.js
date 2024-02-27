@@ -41,7 +41,7 @@ function userInfoFill(currentObject){
                 '<p class="w-full text-center font-bold">' +
                 key +
                 ': </p>' +
-                `<input type="text" value="${currentObject[key]}" class="place-self-center bg-gray-200 w-fit select-auto rounded text-center text-wrap"> </div>`;
+                `<input type="text" value="${currentObject[key]}" class="place-self-center bg-gray-200 w-2/3 select-auto rounded text-center text-wrap"> </div>`;
         }
     }
     return userInfoHTML;
